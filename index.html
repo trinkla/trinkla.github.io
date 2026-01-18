@@ -387,48 +387,22 @@
     <footer>© Trinkla</footer>
   </div>
 <script>
-  // GA4: track successful Brevo subscription when success message becomes visible
-  (function () {
-    function isVisible(el) {
-      if (!el) return false;
-      const style = window.getComputedStyle(el);
-      return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
-    }
+  // Brevo → GA4 confirmed signup tracking
+  window._sib = window._sib || [];
 
-    function fireWaitlistEvent() {
-      if (window.__trinklaWaitlistTracked) return;
-      window.__trinklaWaitlistTracked = true;
+  window._sib.push(['on', 'success', function () {
+    if (window.__trinklaWaitlistTracked) return;
+    window.__trinklaWaitlistTracked = true;
 
-      if (typeof gtag === 'function') {
-        gtag('event', 'waitlist_signup', {
-          event_category: 'conversion',
-          event_label: 'brevo_success'
-        });
-      }
-    }
-
-    function initObserver() {
-      const success = document.getElementById('success-message');
-      if (!success) return;
-
-      // If it's already visible for some reason
-      if (isVisible(success)) fireWaitlistEvent();
-
-      // Watch for changes Brevo makes to show/hide the success panel
-      const obs = new MutationObserver(function () {
-        if (isVisible(success)) fireWaitlistEvent();
+    if (typeof gtag === 'function') {
+      gtag('event', 'waitlist_signup', {
+        event_category: 'conversion',
+        event_label: 'brevo_success'
       });
-
-      obs.observe(success, { attributes: true, attributeFilter: ['style', 'class'] });
     }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initObserver);
-    } else {
-      initObserver();
-    }
-  })();
+  }]);
 </script>
+
 </body>
 </html>
 
