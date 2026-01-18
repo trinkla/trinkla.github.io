@@ -4,16 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trinkla — Coming soon</title>
-  <meta name="description" content="Trinkla is launching soon. Join the club for early access and first drops." />
+  <meta name="description" content="Trinkla is boarding soon. Join the club for early access to drops and restocks." />
+
   <style>
     :root{
-      --bg:#0b0b10;
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --border:rgba(255,255,255,.12);
-      --card:rgba(255,255,255,.05);
-      --plum:#5a1f4d; /* tweak later */
+      /* Brand palette */
+      --plum:#8B295A;
+      --wine:#551634;
+      --canvas:#FFFFFF;
+      --grey:#F4F4F6;
+      --chrome:#C9CBD3;
+      --lilac:#E9D7E3;
+      --pink:#FF3DAE;      /* CTA only, sparingly */
+      --charcoal:#111111;
+
+      /* UI tokens */
+      --text: var(--charcoal);
+      --muted: rgba(17,17,17,.66);
+      --border: rgba(17,17,17,.14);
+      --shadow: 0 18px 50px rgba(85,22,52,.10);
+      --radius: 22px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -22,215 +34,228 @@
       align-items:center;
       justify-content:center;
       padding:24px;
-      background: radial-gradient(900px 600px at 20% 0%, rgba(90,31,77,.35), transparent 60%), var(--bg);
+      background:
+        radial-gradient(900px 600px at 15% 0%, rgba(233,215,227,.75), transparent 60%),
+        radial-gradient(900px 600px at 95% 10%, rgba(139,41,90,.10), transparent 55%),
+        var(--canvas);
       color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
     }
+
     .wrap{width:min(980px, 100%); display:grid; gap:16px}
+
     .top{
       display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
       padding:10px 14px;
       border:1px solid var(--border);
       border-radius:999px;
-      background: rgba(0,0,0,.18);
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(10px);
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
-    .dot{width:10px; height:10px; border-radius:999px; background:var(--plum)}
+
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.2px}
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--plum); box-shadow: 0 0 0 4px rgba(233,215,227,.8)}
+
     .nav{display:flex; gap:14px; flex-wrap:wrap}
-    .nav a{color:var(--muted); text-decoration:none; font-size:14px}
-    .nav a:hover{color:var(--text)}
+    .nav a{color:rgba(17,17,17,.70); text-decoration:none; font-size:14px}
+    .nav a:hover{color:var(--plum)}
+
     .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:16px}
     @media (max-width: 860px){ .grid{grid-template-columns:1fr} }
+
     .card{
       border:1px solid var(--border);
-      border-radius:22px;
-      background: var(--card);
+      border-radius:var(--radius);
+      background: rgba(244,244,246,.85);
       padding:26px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      box-shadow: var(--shadow);
     }
-    h1{margin:0 0 10px; font-size:44px; letter-spacing:-.6px; line-height:1.05}
-    p{margin:0 0 16px; color:var(--muted); line-height:1.6; font-size:16px}
+
     .pill{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid var(--border);
-      color:var(--muted);
+      border:1px solid rgba(139,41,90,.18);
+      color:rgba(85,22,52,.85);
+      background: rgba(233,215,227,.55);
       font-size:13px;
       margin-bottom:14px;
     }
-    form{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    input{
-      flex:1; min-width:220px;
-      padding:14px 14px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      outline:none;
-    }
-    input::placeholder{color: rgba(255,255,255,.45)}
-    button, .btn{
-      padding:14px 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:#fff;
-      color:#0b0b10;
-      font-weight:700;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex; align-items:center; justify-content:center;
-    }
-    .btn.secondary{
-      background:transparent;
-      color:var(--text);
-      border:1px solid var(--border);
-    }
-    .fine{margin-top:10px; font-size:13px; color:rgba(255,255,255,.55)}
-    .tile{padding:14px; border-radius:18px; border:1px solid var(--border); background: rgba(0,0,0,.18); margin-bottom:10px}
-    .tile b{display:block; margin-bottom:4px}
-    .tile span{color:var(--muted); font-size:14px; line-height:1.35}
-    footer{color:rgba(255,255,255,.55); font-size:13px; text-align:center; padding:6px 0}
-    /* --- Brevo form: Trinkla styling overrides --- */
-.sib-form { background: transparent !important; }
-#sib-form-container { max-width: 100% !important; }
-#sib-container{
-  max-width: 100% !important;
-  border: 0 !important;
-  border-radius: 16px !important;
-  background: transparent !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-}
-#sib-form .entry__label{
-  font-family: inherit !important;
-  color: var(--muted) !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-}
-#sib-form .input{
-  width: 100% !important;
-  padding: 14px 14px !important;
-  border-radius: 14px !important;
-  border: 1px solid var(--border) !important;
-  background: rgba(0,0,0,.02) !important;
-  color: var(--text) !important;
-  font-family: inherit !important;
-}
-#sib-form .sib-form-block__button{
-  padding: 14px 16px !important;
-  border-radius: 14px !important;
-  background: var(--plum) !important;
-  color: #fff !important;
-  border: 0 !important;
-  font-family: inherit !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-}
-#success-message, #error-message{
-  max-width: 100% !important;
-  border-radius: 14px !important;
-  border-width: 1px !important;
-  margin-bottom: 12px !important;
-}
+    .pill .mini-dot{width:7px; height:7px; border-radius:999px; background: var(--plum)}
 
+    h1{
+      margin:0 0 10px;
+      font-size:44px;
+      letter-spacing:-.8px;
+      line-height:1.05;
+      color: var(--wine);
+    }
+
+    p{margin:0 0 16px; color:var(--muted); line-height:1.6; font-size:16px}
+
+    .fine{margin-top:10px; font-size:13px; color:rgba(17,17,17,.58)}
+
+    .tile{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.75);
+      margin-bottom:10px;
+    }
+    .tile b{display:block; margin-bottom:4px; color: var(--wine); letter-spacing:-.2px}
+    .tile span{color:rgba(17,17,17,.66); font-size:14px; line-height:1.35}
+
+    footer{color:rgba(17,17,17,.55); font-size:13px; text-align:center; padding:6px 0}
+
+    /* --- Brevo form: Trinkla styling overrides --- */
+    .sib-form { background: transparent !important; }
+    #sib-form-container { max-width: 100% !important; }
+    #sib-container{
+      max-width: 100% !important;
+      border: 0 !important;
+      border-radius: 16px !important;
+      background: transparent !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+    #sib-form .entry__label{
+      font-family: inherit !important;
+      color: rgba(17,17,17,.70) !important;
+      font-weight: 650 !important;
+      font-size: 14px !important;
+    }
+    #sib-form .input{
+      width: 100% !important;
+      padding: 14px 14px !important;
+      border-radius: 14px !important;
+      border: 1px solid rgba(17,17,17,.18) !important;
+      background: rgba(255,255,255,.85) !important;
+      color: var(--charcoal) !important;
+      font-family: inherit !important;
+      outline: none !important;
+    }
+    #sib-form .input::placeholder{color: rgba(17,17,17,.40) !important}
+
+    #sib-form .sib-form-block__button{
+      padding: 14px 16px !important;
+      border-radius: 14px !important;
+      background: var(--plum) !important;
+      color: #fff !important;
+      border: 0 !important;
+      font-family: inherit !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      box-shadow: 0 10px 24px rgba(85,22,52,.18) !important;
+    }
+    #sib-form .sib-form-block__button:hover{filter: brightness(1.05) !important}
+
+    #success-message, #error-message{
+      max-width: 100% !important;
+      border-radius: 14px !important;
+      border-width: 1px !important;
+      margin-bottom: 12px !important;
+    }
+
+    @media (max-width: 640px){
+      #sib-form .sib-form-block__button{ width:100% !important; }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="top">
       <div class="brand"><span class="dot"></span> Trinkla</div>
       <div class="nav">
-        <a href="https://www.instagram.com/shop.trinkla/" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">TikTok</a>
-        <a href="#" target="_blank" rel="noopener">Shop</a>
+        <a href="https://www.instagram.com/shoptrinkla/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@shoptrinkla" target="_blank" rel="noopener">TikTok</a>
       </div>
     </div>
 
     <div class="grid">
       <section class="card">
-        <div class="pill">Launching soon • early access drops first</div>
+        <div class="pill"><span class="mini-dot"></span> Boarding soon • early access opens first</div>
         <h1>Join the club.</h1>
         <p>
-          Curated jewellery and accessories with a boutique, gift-ready feel.
-          Get early access to first drops, limited restocks and subscriber-only perks.
+          Destination-coded jewellery and accessories.
+          First access to new drops, limited restocks and club-only perks.
         </p>
 
-       <!-- Begin Brevo Form -->
-<div class="sib-form" style="text-align:left; background-color: transparent;">
-  <div id="sib-form-container" class="sib-form-container">
+        <!-- Begin Brevo Form -->
+        <div class="sib-form" style="text-align:left; background-color: transparent;">
+          <div id="sib-form-container" class="sib-form-container">
 
-    <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#661d1d; background-color:#ffeded; border-radius:14px; border-color:#ff4949; max-width:100%; display:none;">
-      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-        <span class="sib-form-message-panel__inner-text">Something went wrong. Please try again in a moment.</span>
-      </div>
-    </div>
-
-    <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#085229; background-color:#e7faf0; border-radius:14px; border-color:#13ce66; max-width:100%; display:none;">
-      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-        <span class="sib-form-message-panel__inner-text">You’re in. Early access coming soon ✦</span>
-      </div>
-    </div>
-
-    <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:left; background-color:transparent; direction:ltr">
-      <form id="sib-form" method="POST"
-        action="https://1b7991cf.sibforms.com/serve/MUIFAP222W5EMQponhb7PxqQTi_Ggu6bXtvO3jg4FnQ5RFGgIovVTJVDfzWvxrJx3XQVb_Ei8z2klpBlGTEPfvP6B0sMLYceB9RVQD9ionpOgAdfNka3L6Z1rLbvKRiGWcar5mbqi2LZssXVVIg8ONNJ-3MahaH4UeyriJpBnaXrjAsHbXK6xQw2wumSW2JlnNEoKiGH-lEPS4UWRQ=="
-        data-type="subscription">
-
-        <div style="padding: 0; margin-top: 8px;">
-          <div class="sib-input sib-form-block">
-            <div class="form__entry entry_block">
-              <div class="form__label-row">
-                <label class="entry__label" for="EMAIL" data-required="*">Email</label>
-                <div class="entry__field">
-                  <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="email"
-                    placeholder="Enter your email" data-required="true" required />
-                </div>
+            <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#661d1d; background-color:#ffeded; border-radius:14px; border-color:#ff4949; max-width:100%; display:none;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">Something went wrong. Please try again in a moment.</span>
               </div>
+            </div>
 
-              <label class="entry__error entry__error--primary" style="display:block;"></label>
-              <label class="entry__specification">No spam. Just drops, restocks and club updates.</label>
+            <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#085229; background-color:#e7faf0; border-radius:14px; border-color:#13ce66; max-width:100%; display:none;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">You’re in. Early access coming soon ✦</span>
+              </div>
+            </div>
+
+            <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:left; background-color:transparent; direction:ltr">
+              <form id="sib-form" method="POST"
+                action="https://1b7991cf.sibforms.com/serve/MUIFAP222W5EMQponhb7PxqQTi_Ggu6bXtvO3jg4FnQ5RFGgIovVTJVDfzWvxrJx3XQVb_Ei8z2klpBlGTEPfvP6B0sMLYceB9RVQD9ionpOgAdfNka3L6Z1rLbvKRiGWcar5mbqi2LZssXVVIg8ONNJ-3MahaH4UeyriJpBnaXrjAsHbXK6xQw2wumSW2JlnNEoKiGH-lEPS4UWRQ=="
+                data-type="subscription">
+
+                <div style="padding: 0; margin-top: 8px;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <label class="entry__label" for="EMAIL" data-required="*">Email</label>
+                        <div class="entry__field">
+                          <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="email"
+                            placeholder="Enter your email" data-required="true" required />
+                        </div>
+                      </div>
+
+                      <label class="entry__error entry__error--primary" style="display:block;"></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="padding: 0; margin-top: 10px;">
+                  <div class="sib-form-block" style="text-align:left">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                      Get early access
+                    </button>
+                  </div>
+                </div>
+
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="en">
+              </form>
             </div>
           </div>
         </div>
 
-        <div style="padding: 0; margin-top: 10px;">
-          <div class="sib-form-block" style="text-align:left">
-            <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
-              Get early access
-            </button>
-          </div>
-        </div>
+        <script>
+          window.LOCALE = 'en';
+          window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
+          window.REQUIRED_ERROR_MESSAGE = "Please enter your email address.";
+          window.GENERIC_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
+          var AUTOHIDE = Boolean(0);
+        </script>
+        <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+        <!-- End Brevo Form -->
 
-        <input type="text" name="email_address_check" value="" class="input--hidden">
-        <input type="hidden" name="locale" value="en">
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-  window.LOCALE = 'en';
-  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
-  window.REQUIRED_ERROR_MESSAGE = "Please enter your email address.";
-  window.GENERIC_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
-  var AUTOHIDE = Boolean(0);
-</script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-<!-- End Brevo Form -->
-
-
-        <div class="fine">No spam. Just drops, restocks and club updates.</div>
+        <div class="fine">No spam. Just drops, restocks and club access.</div>
       </section>
 
       <aside class="card">
         <div class="tile">
-          <b>First drop</b>
+          <b>First terminal (drop 01)</b>
           <span>Snake ring, snake chain necklace, hoops, tennis bracelet and hair clips.</span>
         </div>
         <div class="tile">
           <b>Shipping</b>
-          <span>Australia-wide shipping. Free shipping over a threshold (finalising).</span>
+          <span>Australia-wide. Free shipping over a threshold (finalising).</span>
         </div>
         <div class="tile">
           <b>Launch window</b>
@@ -238,7 +263,7 @@
         </div>
         <div class="tile">
           <b>Contact</b>
-          <span>Email <a href="mailto:hello@trinkla.com" style="color:rgba(255,255,255,.85)">hello@trinkla.com</a></span>
+          <span>Email <a href="mailto:trinkla.store@gmail.com" style="color:rgba(17,17,17,.82)">trinkla.store@gmail.com</a></span>
         </div>
       </aside>
     </div>
@@ -247,4 +272,5 @@
   </div>
 </body>
 </html>
+
 
