@@ -6,6 +6,9 @@
   <title>Trinkla — Coming soon</title>
   <meta name="description" content="Trinkla is boarding soon. Join the club for early access to drops and restocks." />
 
+  <!-- Brevo base styles (important for form behaviour + message toggling) -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
   <style>
     :root{
       /* Brand palette */
@@ -159,12 +162,14 @@
       margin-bottom: 12px !important;
     }
 
-    /* Hide Brevo hidden anti-bot field (stops the random white box) */
+    /* Keep Brevo bot-trap present but invisible (prevents the random white box without breaking validation) */
     #sib-form .input--hidden{
-      display:none !important;
-      visibility:hidden !important;
-      height:0 !important;
-      width:0 !important;
+      position:absolute !important;
+      left:-9999px !important;
+      top:auto !important;
+      width:1px !important;
+      height:1px !important;
+      opacity:0 !important;
       padding:0 !important;
       margin:0 !important;
       border:0 !important;
@@ -199,13 +204,14 @@
         <div class="sib-form" style="text-align:left; background-color: transparent;">
           <div id="sib-form-container" class="sib-form-container">
 
-            <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#661d1d; background-color:#ffeded; border-radius:14px; border-color:#ff4949; max-width:100%; display:none;">
+            <!-- NOTE: no display:none inline (Brevo will toggle these properly) -->
+            <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#661d1d; background-color:#ffeded; border-radius:14px; border-color:#ff4949; max-width:100%;">
               <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
                 <span class="sib-form-message-panel__inner-text">Something went wrong. Please try again in a moment.</span>
               </div>
             </div>
 
-            <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#085229; background-color:#e7faf0; border-radius:14px; border-color:#13ce66; max-width:100%; display:none;">
+            <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#085229; background-color:#e7faf0; border-radius:14px; border-color:#13ce66; max-width:100%;">
               <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
                 <span class="sib-form-message-panel__inner-text">You’re in. Early access coming soon ✦</span>
               </div>
@@ -240,6 +246,7 @@
                   </div>
                 </div>
 
+                <!-- Bot-trap field (kept, just moved offscreen via CSS) -->
                 <input type="text" name="email_address_check" value="" class="input--hidden">
                 <input type="hidden" name="locale" value="en">
               </form>
@@ -263,7 +270,7 @@
       <aside class="card">
         <div class="tile">
           <b>Terminals</b>
-          <span>After Dark Lounge · Daylight Studio · Golden Hour Market · Velvet Jetset</span>
+          <span>After Dark · City Transit · Golden Hour Gate · Soft Takeoff</span>
         </div>
         <div class="tile">
           <b>Shipping</b>
@@ -284,4 +291,5 @@
   </div>
 </body>
 </html>
+
 
