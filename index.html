@@ -1,12 +1,150 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Trinkla</title>
-  </head>
-  <body style="font-family: system-ui; padding: 60px; background: white;">
-    <h1>Trinkla — coming soon</h1>
-    <p>This page is live.</p>
-  </body>
+<html lang="en-au">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trinkla — Coming soon</title>
+  <meta name="description" content="Trinkla is launching soon. Join the club for early access and first drops." />
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --border:rgba(255,255,255,.12);
+      --card:rgba(255,255,255,.05);
+      --plum:#5a1f4d; /* tweak later */
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background: radial-gradient(900px 600px at 20% 0%, rgba(90,31,77,.35), transparent 60%), var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .wrap{width:min(980px, 100%); display:grid; gap:16px}
+    .top{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background: rgba(0,0,0,.18);
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--plum)}
+    .nav{display:flex; gap:14px; flex-wrap:wrap}
+    .nav a{color:var(--muted); text-decoration:none; font-size:14px}
+    .nav a:hover{color:var(--text)}
+    .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:16px}
+    @media (max-width: 860px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--border);
+      border-radius:22px;
+      background: var(--card);
+      padding:26px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+    h1{margin:0 0 10px; font-size:44px; letter-spacing:-.6px; line-height:1.05}
+    p{margin:0 0 16px; color:var(--muted); line-height:1.6; font-size:16px}
+    .pill{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:14px;
+    }
+    form{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    input{
+      flex:1; min-width:220px;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline:none;
+    }
+    input::placeholder{color: rgba(255,255,255,.45)}
+    button, .btn{
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:#fff;
+      color:#0b0b10;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+    .fine{margin-top:10px; font-size:13px; color:rgba(255,255,255,.55)}
+    .tile{padding:14px; border-radius:18px; border:1px solid var(--border); background: rgba(0,0,0,.18); margin-bottom:10px}
+    .tile b{display:block; margin-bottom:4px}
+    .tile span{color:var(--muted); font-size:14px; line-height:1.35}
+    footer{color:rgba(255,255,255,.55); font-size:13px; text-align:center; padding:6px 0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><span class="dot"></span> Trinkla</div>
+      <div class="nav">
+        <a href="https://www.instagram.com/shop.trinkla/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">TikTok</a>
+        <a href="#" target="_blank" rel="noopener">Shop</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="pill">Launching soon • early access drops first</div>
+        <h1>Join the club.</h1>
+        <p>
+          Curated jewellery and accessories with a boutique, gift-ready feel.
+          Get early access to first drops, limited restocks and subscriber-only perks.
+        </p>
+
+        <!-- TEMP form: replace with Brevo/Mailchimp embed in Step 2 -->
+        <form onsubmit="alert('Next step: connect a free email form (Brevo).'); return false;">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Get early access</button>
+          <a class="btn secondary" href="https://www.instagram.com/shop.trinkla/" target="_blank" rel="noopener">Follow on Instagram</a>
+        </form>
+
+        <div class="fine">No spam. Just drops, restocks and club updates.</div>
+      </section>
+
+      <aside class="card">
+        <div class="tile">
+          <b>First drop</b>
+          <span>Snake ring, snake chain necklace, hoops, tennis bracelet and hair clips.</span>
+        </div>
+        <div class="tile">
+          <b>Shipping</b>
+          <span>Australia-wide shipping. Free shipping over a threshold (finalising).</span>
+        </div>
+        <div class="tile">
+          <b>Launch window</b>
+          <span>Late Feb–March. Subscribers get first access.</span>
+        </div>
+        <div class="tile">
+          <b>Contact</b>
+          <span>Email <a href="mailto:hello@trinkla.com" style="color:rgba(255,255,255,.85)">hello@trinkla.com</a></span>
+        </div>
+      </aside>
+    </div>
+
+    <footer>© Trinkla</footer>
+  </div>
+</body>
 </html>
 
