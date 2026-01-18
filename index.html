@@ -6,22 +6,20 @@
   <title>Trinkla — Coming soon</title>
   <meta name="description" content="Trinkla is boarding soon. Join the club for early access to drops and restocks." />
 
-  <!-- Brevo base styles (important for form behaviour + message toggling) -->
+  <!-- Brevo base styles (do not remove) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 
   <style>
     :root{
-      /* Brand palette */
       --plum:#8B295A;
       --wine:#551634;
       --canvas:#FFFFFF;
       --grey:#F4F4F6;
       --chrome:#C9CBD3;
       --lilac:#E9D7E3;
-      --pink:#FF3DAE;      /* CTA only, sparingly */
+      --pink:#FF3DAE;
       --charcoal:#111111;
 
-      /* UI tokens */
       --text: var(--charcoal);
       --muted: rgba(17,17,17,.66);
       --border: rgba(17,17,17,.14);
@@ -97,7 +95,6 @@
     }
 
     p{margin:0 0 16px; color:var(--muted); line-height:1.6; font-size:16px}
-
     .fine{margin-top:10px; font-size:13px; color:rgba(17,17,17,.58)}
 
     .tile{
@@ -112,7 +109,7 @@
 
     footer{color:rgba(17,17,17,.55); font-size:13px; text-align:center; padding:6px 0}
 
-    /* --- Brevo form: Trinkla styling overrides --- */
+    /* --- Brevo overrides --- */
     .sib-form { background: transparent !important; }
     #sib-form-container { max-width: 100% !important; }
     #sib-container{
@@ -123,6 +120,7 @@
       padding: 0 !important;
       box-shadow: none !important;
     }
+
     #sib-form .entry__label{
       font-family: inherit !important;
       color: rgba(17,17,17,.70) !important;
@@ -155,14 +153,7 @@
     }
     #sib-form .sib-form-block__button:hover{filter: brightness(1.05) !important}
 
-    #success-message, #error-message{
-      max-width: 100% !important;
-      border-radius: 14px !important;
-      border-width: 1px !important;
-      margin-bottom: 12px !important;
-    }
-
-    /* Keep Brevo bot-trap present but invisible (prevents the random white box without breaking validation) */
+    /* Keep bot-trap field but move it off-screen */
     #sib-form .input--hidden{
       position:absolute !important;
       left:-9999px !important;
@@ -174,6 +165,19 @@
       margin:0 !important;
       border:0 !important;
     }
+
+    /* Make Brevo message panels match style */
+    .sib-form-message-panel{
+      max-width: 100% !important;
+      border-radius: 14px !important;
+      border-width: 1px !important;
+      margin-bottom: 12px !important;
+      padding: 12px 14px !important;
+    }
+
+    /* Tiny click feedback */
+    .tap-feedback{display:none; margin-top:10px; font-size:13px; color:rgba(17,17,17,.58)}
+    .tap-feedback.show{display:block}
 
     @media (max-width: 640px){
       #sib-form .sib-form-block__button{ width:100% !important; }
@@ -200,19 +204,19 @@
           First access to new drops, limited restocks and club-only perks.
         </p>
 
-        <!-- Begin Brevo Form -->
+        <!-- Brevo Form -->
         <div class="sib-form" style="text-align:left; background-color: transparent;">
           <div id="sib-form-container" class="sib-form-container">
 
-            <!-- NOTE: no display:none inline (Brevo will toggle these properly) -->
-            <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#661d1d; background-color:#ffeded; border-radius:14px; border-color:#ff4949; max-width:100%;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <!-- IMPORTANT: Brevo expects these IDs and hides them using its own CSS class -->
+            <div id="error-message" class="sib-form-message-panel sib-form-message-panel--hidden" style="color:#661d1d; background-color:#ffeded; border-color:#ff4949;">
+              <div class="sib-form-message-panel__text">
                 <span class="sib-form-message-panel__inner-text">Something went wrong. Please try again in a moment.</span>
               </div>
             </div>
 
-            <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:inherit; color:#085229; background-color:#e7faf0; border-radius:14px; border-color:#13ce66; max-width:100%;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <div id="success-message" class="sib-form-message-panel sib-form-message-panel--hidden" style="color:#085229; background-color:#e7faf0; border-color:#13ce66;">
+              <div class="sib-form-message-panel__text">
                 <span class="sib-form-message-panel__inner-text">You’re in. Early access coming soon ✦</span>
               </div>
             </div>
@@ -222,7 +226,7 @@
                 action="https://1b7991cf.sibforms.com/serve/MUIFAP222W5EMQponhb7PxqQTi_Ggu6bXtvO3jg4FnQ5RFGgIovVTJVDfzWvxrJx3XQVb_Ei8z2klpBlGTEPfvP6B0sMLYceB9RVQD9ionpOgAdfNka3L6Z1rLbvKRiGWcar5mbqi2LZssXVVIg8ONNJ-3MahaH4UeyriJpBnaXrjAsHbXK6xQw2wumSW2JlnNEoKiGH-lEPS4UWRQ=="
                 data-type="subscription">
 
-                <div style="padding: 0; margin-top: 8px;">
+                <div style="padding:0; margin-top:8px;">
                   <div class="sib-input sib-form-block">
                     <div class="form__entry entry_block">
                       <div class="form__label-row">
@@ -232,34 +236,47 @@
                             placeholder="Enter your email" data-required="true" required />
                         </div>
                       </div>
-
                       <label class="entry__error entry__error--primary" style="display:block;"></label>
                     </div>
                   </div>
                 </div>
 
-                <div style="padding: 0; margin-top: 10px;">
+                <div style="padding:0; margin-top:10px;">
                   <div class="sib-form-block" style="text-align:left">
-                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                    <button id="trinkla-submit" class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
                       Get early access
                     </button>
                   </div>
                 </div>
 
-                <!-- Bot-trap field (kept, just moved offscreen via CSS) -->
                 <input type="text" name="email_address_check" value="" class="input--hidden">
                 <input type="hidden" name="locale" value="en">
               </form>
             </div>
+
+            <div id="tap-feedback" class="tap-feedback">Sending…</div>
           </div>
         </div>
 
         <script>
+          // Brevo messages
           window.LOCALE = 'en';
           window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
           window.REQUIRED_ERROR_MESSAGE = "Please enter your email address.";
           window.GENERIC_INVALID_MESSAGE = "That email doesn’t look quite right. Try again.";
           var AUTOHIDE = Boolean(0);
+
+          // Tiny visual feedback so you know click registered
+          document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.getElementById("trinkla-submit");
+            var fb = document.getElementById("tap-feedback");
+            if (btn && fb) {
+              btn.addEventListener("click", function () {
+                fb.classList.add("show");
+                setTimeout(function(){ fb.classList.remove("show"); }, 4000);
+              });
+            }
+          });
         </script>
         <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
         <!-- End Brevo Form -->
@@ -270,7 +287,7 @@
       <aside class="card">
         <div class="tile">
           <b>Terminals</b>
-          <span>After Dark · City Transit · Golden Hour Gate · Soft Takeoff</span>
+          <span>After Dark Lounge · Daylight Studio · Golden Hour Market · Velvet Jetset</span>
         </div>
         <div class="tile">
           <b>Shipping</b>
@@ -291,5 +308,6 @@
   </div>
 </body>
 </html>
+
 
 
